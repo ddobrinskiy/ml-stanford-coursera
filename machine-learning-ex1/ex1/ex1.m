@@ -71,8 +71,7 @@ J = computeCost(X, y, [-1 ; 2]);
 fprintf('\nWith theta = [-1 ; 2]\nCost computed = %f\n', J);
 fprintf('Expected cost value (approx) 54.24\n');
 
-%fprintf('Program paused. Press enter to continue.\n');
-%pause;
+
 
 % <codecell>
 fprintf('\nRunning Gradient Descent ...\n')
@@ -85,6 +84,9 @@ fprintf('%f\n', theta);
 fprintf('Expected theta values (approx)\n');
 fprintf(' -3.6303\n  1.1664\n\n');
 
+%fprintf('Program paused. Press enter to continue.\n');
+%pause;
+% <codecell>
 % Plot the linear fit
 hold on; % keep previous plot visible
 plot(X(:,2), X*theta, '-')

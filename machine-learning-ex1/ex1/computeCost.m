@@ -24,7 +24,7 @@ errors = h - y;
 % compute squared errors (use .^ for vector element-wise power)
 errors_squared = errors.^2;
 % J = sum(errors_squared)/(2m)
-J = sum(errors_squared)/(2*m)
+J = sum(errors_squared)/(2*m);
 % =========================================================================
 
 end
