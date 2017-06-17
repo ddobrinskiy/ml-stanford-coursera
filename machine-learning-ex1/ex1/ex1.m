@@ -26,6 +26,7 @@
 %% Initialization
 clear ; close all; clc
 
+% <codecell>
 %% ==================== Part 1: Basic Function ====================
 % Complete warmUpExercise.m
 fprintf('Running warmUpExercise ... \n');
@@ -33,9 +34,9 @@ fprintf('5x5 Identity Matrix: \n');
 warmUpExercise()
 
 fprintf('Program paused. Press enter to continue.\n');
-pause;
+%pause;
 
-
+% <codecell>
 %% ======================= Part 2: Plotting =======================
 fprintf('Plotting Data ...\n')
 data = load('ex1data1.txt');
@@ -46,9 +47,10 @@ m = length(y); % number of training examples
 % Note: You have to complete the code in plotData.m
 plotData(X, y);
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
+%fprintf('Program paused. Press enter to continue.\n');
+%pause;
 
+% <codecell>
 %% =================== Part 3: Cost and Gradient descent ===================
 
 X = [ones(m, 1), data(:,1)]; % Add a column of ones to x
@@ -69,9 +71,10 @@ J = computeCost(X, y, [-1 ; 2]);
 fprintf('\nWith theta = [-1 ; 2]\nCost computed = %f\n', J);
 fprintf('Expected cost value (approx) 54.24\n');
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
+%fprintf('Program paused. Press enter to continue.\n');
+%pause;
 
+% <codecell>
 fprintf('\nRunning Gradient Descent ...\n')
 % run gradient descent
 theta = gradientDescent(X, y, theta, alpha, iterations);
@@ -99,6 +102,7 @@ fprintf('For population = 70,000, we predict a profit of %f\n',...
 fprintf('Program paused. Press enter to continue.\n');
 pause;
 
+% <codecell>
 %% ============= Part 4: Visualizing J(theta_0, theta_1) =============
 fprintf('Visualizing J(theta_0, theta_1) ...\n')
 
