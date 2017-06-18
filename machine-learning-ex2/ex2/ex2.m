@@ -2,9 +2,9 @@
 %
 %  Instructions
 %  ------------
-% 
+%
 %  This file contains code that helps you get started on the logistic
-%  regression exercise. You will need to complete the following functions 
+%  regression exercise. You will need to complete the following functions
 %  in this exericse:
 %
 %     sigmoid.m
@@ -27,15 +27,15 @@ data = load('ex2data1.txt');
 X = data(:, [1, 2]); y = data(:, 3);
 
 %% ==================== Part 1: Plotting ====================
-%  We start the exercise by first plotting the data to understand the 
+%  We start the exercise by first plotting the data to understand the
 %  the problem we are working with.
-
+% <codecell>
 fprintf(['Plotting data with + indicating (y = 1) examples and o ' ...
          'indicating (y = 0) examples.\n']);
 
 plotData(X, y);
 
-% Put some labels 
+% Put some labels
 hold on;
 % Labels and Legend
 xlabel('Exam 1 score')
@@ -45,13 +45,14 @@ ylabel('Exam 2 score')
 legend('Admitted', 'Not admitted')
 hold off;
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+%fprintf('\nProgram paused. Press enter to continue.\n');
+%pause;
+% <codecell>
 
 
 %% ============ Part 2: Compute Cost and Gradient ============
 %  In this part of the exercise, you will implement the cost and gradient
-%  for logistic regression. You neeed to complete the code in 
+%  for logistic regression. You neeed to complete the code in
 %  costFunction.m
 
 %  Setup the data matrix appropriately, and add ones for the intercept term
@@ -71,6 +72,7 @@ fprintf('Expected cost (approx): 0.693\n');
 fprintf('Gradient at initial theta (zeros): \n');
 fprintf(' %f \n', grad);
 fprintf('Expected gradients (approx):\n -0.1000\n -12.0092\n -11.2628\n');
+% <codecell>
 
 % Compute and display cost and gradient with non-zero theta
 test_theta = [-24; 0.2; 0.2];
@@ -85,7 +87,7 @@ fprintf('Expected gradients (approx):\n 0.043\n 2.566\n 2.647\n');
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
 
-
+% <codecell>
 %% ============= Part 3: Optimizing using fminunc  =============
 %  In this exercise, you will use a built-in function (fminunc) to find the
 %  optimal parameters theta.
@@ -94,7 +96,7 @@ pause;
 options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 %  Run fminunc to obtain the optimal theta
-%  This function will return theta and the cost 
+%  This function will return theta and the cost
 [theta, cost] = ...
 	fminunc(@(t)(costFunction(t, X, y)), initial_theta, options);
 
@@ -106,10 +108,11 @@ fprintf(' %f \n', theta);
 fprintf('Expected theta (approx):\n');
 fprintf(' -25.161\n 0.206\n 0.201\n');
 
+% <codecell>
 % Plot Boundary
 plotDecisionBoundary(theta, X, y);
 
-% Put some labels 
+% Put some labels
 hold on;
 % Labels and Legend
 xlabel('Exam 1 score')
@@ -121,20 +124,21 @@ hold off;
 
 fprintf('\nProgram paused. Press enter to continue.\n');
 pause;
+% <codecell>
 
 %% ============== Part 4: Predict and Accuracies ==============
 %  After learning the parameters, you'll like to use it to predict the outcomes
 %  on unseen data. In this part, you will use the logistic regression model
-%  to predict the probability that a student with score 45 on exam 1 and 
+%  to predict the probability that a student with score 45 on exam 1 and
 %  score 85 on exam 2 will be admitted.
 %
-%  Furthermore, you will compute the training and test set accuracies of 
+%  Furthermore, you will compute the training and test set accuracies of
 %  our model.
 %
 %  Your task is to complete the code in predict.m
 
-%  Predict probability for a student with score 45 on exam 1 
-%  and score 85 on exam 2 
+%  Predict probability for a student with score 45 on exam 1
+%  and score 85 on exam 2
 
 prob = sigmoid([1 45 85] * theta);
 fprintf(['For a student with scores 45 and 85, we predict an admission ' ...
@@ -147,5 +151,3 @@ p = predict(theta, X);
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);
 fprintf('Expected accuracy (approx): 89.0\n');
 fprintf('\n');
-
-
