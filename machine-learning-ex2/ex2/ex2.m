@@ -84,8 +84,8 @@ fprintf('Gradient at test theta: \n');
 fprintf(' %f \n', grad);
 fprintf('Expected gradients (approx):\n 0.043\n 2.566\n 2.647\n');
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+%fprintf('\nProgram paused. Press enter to continue.\n');
+%pause;
 
 % <codecell>
 %% ============= Part 3: Optimizing using fminunc  =============
@@ -122,8 +122,8 @@ ylabel('Exam 2 score')
 legend('Admitted', 'Not admitted')
 hold off;
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+%fprintf('\nProgram paused. Press enter to continue.\n');
+%pause;
 % <codecell>
 
 %% ============== Part 4: Predict and Accuracies ==============

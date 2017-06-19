@@ -40,7 +40,7 @@ ylabel('Microchip Test 2')
 legend('y = 1', 'y = 0')
 hold off;
 
-
+% <codecell>
 %% =========== Part 1: Regularized Logistic Regression ============
 %  In this part, you are given a dataset with data points that are not
 %  linearly separable. However, you would still like to use logistic
@@ -74,9 +74,9 @@ fprintf(' %f \n', grad(1:5));
 fprintf('Expected gradients (approx) - first five values only:\n');
 fprintf(' 0.0085\n 0.0188\n 0.0001\n 0.0503\n 0.0115\n');
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
-
+%fprintf('\nProgram paused. Press enter to continue.\n');
+%pause;
+% <codecell>
 % Compute and display cost and gradient
 % with all-ones theta and lambda = 10
 test_theta = ones(size(X,2),1);
@@ -89,8 +89,9 @@ fprintf(' %f \n', grad(1:5));
 fprintf('Expected gradients (approx) - first five values only:\n');
 fprintf(' 0.3460\n 0.1614\n 0.1948\n 0.2269\n 0.0922\n');
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+%fprintf('\nProgram paused. Press enter to continue.\n');
+%pause;
+% <codecell>
 
 %% ============= Part 2: Regularization and Accuracies =============
 %  Optional Exercise:
@@ -133,4 +134,3 @@ p = predict(theta, X);
 
 fprintf('Train Accuracy: %f\n', mean(double(p == y)) * 100);
 fprintf('Expected accuracy (with lambda = 1): 83.1 (approx)\n');
-
