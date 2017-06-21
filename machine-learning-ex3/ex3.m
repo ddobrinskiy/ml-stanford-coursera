@@ -41,8 +41,8 @@ sel = X(rand_indices(1:100), :);
 
 displayData(sel);
 % <codecell>
-fprintf('Program paused. Press enter to continue.\n');
-pause;
+%fprintf('Program paused. Press enter to continue.\n');
+%pause;
 % <codecell>
 %% ============ Part 2a: Vectorize Logistic Regression ============
 %  In this part of the exercise, you will reuse your logistic regression
