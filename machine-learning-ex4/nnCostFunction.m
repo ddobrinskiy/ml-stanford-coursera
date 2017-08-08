@@ -70,15 +70,25 @@ size(indices)
 
 % FIX: h should be 5000x10 where rows contain 9 zeroes and one 1, corresponding
 % to the max prob
-h = indices; size(h)
 
+% <codecell>
+% first h is only zeroes
+h = zeros(m, num_labels); size(h)
+
+% iterate over every row of H and replace corresponding column with a one;
+% column 1 maps to ONE, column 10 maps to ZERO
+
+for i = 1:m
+    H_i = indices(i); % hypothesis for observation i is H_i
+    h(i, H_i) = 1; % MAP a one to the corresponding column for observation i
+end
+% <codecell>
 % Cost of NN without regularization
 %J_nn =
 
 
-J_log = -(y'*log(h) + (1-y)'*log(1-h))/m;
-% h1 = sigmoid(X*Theta)
-zero
+%J_log = -(y'*log(h) + (1-y)'*log(1-h))/m;
+
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
 %         the cost function with respect to Theta1 and Theta2 in Theta1_grad and
