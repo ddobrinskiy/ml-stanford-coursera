@@ -79,17 +79,20 @@ h = a3;
 
 % convert y to a matrix with 10 labels
 yd = eye(num_labels);
-Y_matrix  = yd(y,:);
+y  = yd(y,:);
 
 %J_log = -(y'*log(h) + (1-y)'*log(1-h))/m;
 % use dot-product, because y is now a matrix
 % costs for 10 labels for each observation
-nn_costs = (Y_matrix).*log(h)+(1-Y_matrix).*log(1-h);
+nn_costs = (y).*log(h)+(1-y).*log(1-h);
 
 % unregularized NN cost
 J_nn = -sum(nn_costs(:))/m;
 
-J = J_nn + lambda/(2*m) * sum(nn_params.^2);
+reg_penalty_1 = sum(sum(Theta1(:,2:end).^2)) * lambda/(2*m);
+reg_penalty_2 = sum(sum(Theta2(:,2:end).^2)) * lambda/(2*m);
+
+J = J_nn + reg_penalty_1 + reg_penalty_2;
 
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
@@ -106,6 +109,25 @@ J = J_nn + lambda/(2*m) * sum(nn_params.^2);
 %               over the training examples if you are implementing it for the
 %               first time.
 %
+
+size(a3)
+size(y)
+
+tridelta_1=0;
+tridelta_2=0;
+
+delta_3=a3-y;
+  z2=[ones(m,1) z2];
+delta_2=delta_3*Theta2.*sigmoidGradient(z2);
+  delta_2=delta_2(:,2:end);
+tridelta_1=tridelta_1+delta_2'*a1; % Same size as Theta1_grad (25x401)
+  tridelta_2=tridelta_2+delta_3'*a2; % Same size as Theta2_grad (10x26)
+Theta1_grad=(1/m).*tridelta_1;
+  Theta2_grad=(1/m).*tridelta_2;
+
+
+
+
 % Part 3: Implement regularization with the cost function and gradients.
 %
 %         Hint: You can implement this around the code for
