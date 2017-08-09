@@ -30,8 +30,7 @@ J = 0;
 Theta1_grad = zeros(size(Theta1));
 Theta2_grad = zeros(size(Theta2));
 
-m
-size(Theta1_grad)
+
 % ====================== YOUR CODE HERE ======================
 % Instructions: You should complete the code by working through the
 %               following parts.
@@ -47,14 +46,14 @@ a1 = [ones(m, 1), X];
 % z2 represents 25 activation units of the first hidden layers
 % each row represents an observation
 % thus z2 has size 5000*25
-z2 = a1*Theta1'; size(z2)
+z2 = a1*Theta1'; size(z2);
 
 % a2 is the activation values of second layer;
 % a2 = sigmoid(z2) PLUS BIAS UNIT
-a2 = [ones(m, 1), sigmoid(z2)]; size(a2)
-size(Theta2)
+a2 = [ones(m, 1), sigmoid(z2)]; size(a2);
+size(Theta2);
 
-z3 = a2*Theta2'; size(z3)
+z3 = a2*Theta2'; size(z3);
 
 % for each observation, a3 is the output layer: a list of probabilities
 % that the input corresponded to each of 10 possible classes
@@ -75,27 +74,22 @@ h = a3;
 % to the max prob
 
 % <codecell>
-% first Y is only zeroes
-Y = zeros(m, num_labels);
-
 % iterate over every row of H and replace corresponding column with a one;
 % column 1 maps to ONE, column 10 maps to ZERO
 
 % convert y to a matrix with 10 labels
 yd = eye(num_labels);
-y  = yd(y,:);
+Y_matrix  = yd(y,:);
 
 %J_log = -(y'*log(h) + (1-y)'*log(1-h))/m;
 % use dot-product, because y is now a matrix
 % costs for 10 labels for each observation
-nn_costs = (-y).*log(h)-(1-y).*log(1-h);
+nn_costs = (Y_matrix).*log(h)+(1-Y_matrix).*log(1-h);
 
 % unregularized NN cost
-J_nn = -sum(nn_costs(:))/m
+J_nn = -sum(nn_costs(:))/m;
 
-
-0
-%J_log = -(y'*log(h) + (1-y)'*log(1-h))/m;
+J = J_nn + lambda/(2*m) * sum(nn_params.^2);
 
 % Part 2: Implement the backpropagation algorithm to compute the gradients
 %         Theta1_grad and Theta2_grad. You should return the partial derivatives of
