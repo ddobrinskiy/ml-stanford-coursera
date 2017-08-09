@@ -17,12 +17,14 @@
 
 %% Initialization
 clear ; close all; clc
+% <codecell>
 
 %% Setup the parameters you will use for this exercise
 input_layer_size  = 400;  % 20x20 Input Images of Digits
 hidden_layer_size = 25;   % 25 hidden units
 num_labels = 10;          % 10 labels, from 1 to 10
                           % (note that we have mapped "0" to label 10)
+% <codecell>
 
 %% =========== Part 1: Loading and Visualizing Data =============
 %  We start the exercise by first loading and visualizing the dataset.
@@ -56,6 +58,9 @@ load('ex4weights.mat');
 
 % Unroll parameters
 nn_params = [Theta1(:) ; Theta2(:)];
+size(nn_params); % 10 285 params
+
+% <codecell>
 
 %% ================ Part 3: Compute Cost (Feedforward) ================
 %  To the neural network, you should first start by implementing the
@@ -70,9 +75,10 @@ nn_params = [Theta1(:) ; Theta2(:)];
 %  will get to implement the regularized cost.
 %
 fprintf('\nFeedforward Using Neural Network ...\n')
-
 % Weight regularization parameter (we set this to 0 here).
 lambda = 0;
+
+% <codecell>
 
 J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
                    num_labels, X, y, lambda);
@@ -80,8 +86,10 @@ J = nnCostFunction(nn_params, input_layer_size, hidden_layer_size, ...
 fprintf(['Cost at parameters (loaded from ex4weights): %f '...
          '\n(this value should be about 0.287629)\n'], J);
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+% <codecell>
+
+%fprintf('\nProgram paused. Press enter to continue.\n');
+%pause;
 % <codecell>
 %% =============== Part 4: Implement Regularization ===============
 %  Once your cost function implementation is correct, you should now

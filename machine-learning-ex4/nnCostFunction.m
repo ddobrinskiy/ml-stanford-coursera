@@ -59,34 +59,42 @@ z3 = a2*Theta2'; size(z3)
 % for each observation, a3 is the output layer: a list of probabilities
 % that the input corresponded to each of 10 possible classes
 a3 = sigmoid(z3);
-
+h = a3;
 % https://stackoverflow.com/questions/10070443/row-wise-operations-in-octave
 % hyptothesis h for some observation would correspond to the classes
 % with the HIGHEST probability; that is achieved by the code below
 % (see stack overflow link)
-[max_values, indices] = max(a3,[],2);
 
-size(indices)
+% 3 lines below: A MISTAKE, h should be sigmoid (the actual a3)
+%[max_values, indices] = max(a3,[],2);
+%size(indices
+%H = zeros(m, num_labels); size(H)
+
 
 % FIX: h should be 5000x10 where rows contain 9 zeroes and one 1, corresponding
 % to the max prob
 
 % <codecell>
-% first h is only zeroes
-h = zeros(m, num_labels); size(h)
+% first Y is only zeroes
+Y = zeros(m, num_labels);
 
 % iterate over every row of H and replace corresponding column with a one;
 % column 1 maps to ONE, column 10 maps to ZERO
 
-for i = 1:m
-    H_i = indices(i); % hypothesis for observation i is H_i
-    h(i, H_i) = 1; % MAP a one to the corresponding column for observation i
-end
-% <codecell>
-% Cost of NN without regularization
-%J_nn =
+% convert y to a matrix with 10 labels
+yd = eye(num_labels);
+y  = yd(y,:);
+
+%J_log = -(y'*log(h) + (1-y)'*log(1-h))/m;
+% use dot-product, because y is now a matrix
+% costs for 10 labels for each observation
+nn_costs = (-y).*log(h)-(1-y).*log(1-h);
+
+% unregularized NN cost
+J_nn = -sum(nn_costs(:))/m
 
 
+0
 %J_log = -(y'*log(h) + (1-y)'*log(1-h))/m;
 
 % Part 2: Implement the backpropagation algorithm to compute the gradients
