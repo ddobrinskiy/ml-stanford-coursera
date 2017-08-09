@@ -110,23 +110,23 @@ J = J_nn + reg_penalty_1 + reg_penalty_2;
 %               first time.
 %
 
-size(a3)
-size(y)
+size(a3);
+size(y);
 
 tridelta_1=0;
 tridelta_2=0;
 
-delta_3=a3-y;
-  z2=[ones(m,1) z2];
-delta_2=delta_3*Theta2.*sigmoidGradient(z2);
-  delta_2=delta_2(:,2:end);
-tridelta_1=tridelta_1+delta_2'*a1; % Same size as Theta1_grad (25x401)
-  tridelta_2=tridelta_2+delta_3'*a2; % Same size as Theta2_grad (10x26)
-Theta1_grad=(1/m).*tridelta_1;
-  Theta2_grad=(1/m).*tridelta_2;
 
-
-
+% step 2
+d3 = a3 - y;
+% step 3
+d2 = (d3 * Theta2 .* sigmoidGradient([ones(size(z2), 1) z2]))(:, 2:end);
+% step 4
+Delta2 = d3' * a2;
+Delta1 = d2' * a1;
+% step 5
+Theta1_grad = (1/m)*Delta1 + (lambda/m)*[ zeros(size(Theta1), 1) Theta1(:, 2:end) ];
+Theta2_grad = (1/m)*Delta2 + (lambda/m)*[ zeros(size(Theta2), 1) Theta2(:, 2:end) ];
 
 % Part 3: Implement regularization with the cost function and gradients.
 %
