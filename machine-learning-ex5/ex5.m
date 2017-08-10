@@ -157,8 +157,8 @@ X_poly_val = [ones(size(X_poly_val, 1), 1), X_poly_val];           % Add Ones
 fprintf('Normalized Training Example 1:\n');
 fprintf('  %f  \n', X_poly(1, :));
 
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+%fprintf('\nProgram paused. Press enter to continue.\n');
+%pause;
 % <codecell>
 
 
@@ -197,8 +197,8 @@ for i = 1:m
     fprintf('  \t%d\t\t%f\t%f\n', i, error_train(i), error_val(i));
 end
 
-%fprintf('\nProgram paused. Press enter to continue.\n');
-%pause;
+fprintf('\nProgram paused. Press enter to continue.\n');
+pause;
 % <codecell>
 
 %% =========== Part 8: Validation for Selecting Lambda =============
