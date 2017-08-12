@@ -16,11 +16,13 @@ sim = 0;
 %
 %
 
-
-
-
-
-
+% diff = vector column of diffirences between elements in x1 and x2
+diff = x1-x2;
+% distance - eucledian distance between x1 and x2
+% distance = sum of diffirences between elements of x1 and x2
+% implementation note: V*V' is equal to sum of squares of vector V;
+%   V'*V is used instead of sum(V.^2) for PERFOMANCE reasons
+distance = diff'*diff;
+sim = exp(-distance/(2*sigma^2));
 % =============================================================
-    
 end
