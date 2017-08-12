@@ -41,7 +41,7 @@ b = 0;
 E = zeros(m, 1);
 passes = 0;
 eta = 0;
-L = 0;
+    L = 0;
 H = 0;
 
 fprintf('\nTraining ...');
@@ -74,7 +74,7 @@ else
 end
 
 % Train
-fprintf('\nTraining ...');
+% fprintf('\nTraining ...');
 dots = 12;
 while passes < max_passes,
 
