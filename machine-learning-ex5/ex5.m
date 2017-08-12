@@ -205,8 +205,9 @@ pause;
 %  You will now implement validationCurve to test various values of
 %  lambda on a validation set. You will then use this to select the
 %  "best" lambda value.
-%
 
+
+% <codecell>
 [lambda_vec, error_train, error_val] = ...
     validationCurve(X_poly, y, X_poly_val, yval);
 
