@@ -23,33 +23,39 @@ sigma = 0.3;
 %        mean(double(predictions ~= yval))
 %
 param_grid = [0.01, 0.03, 0.1, 0.3, 1, 3, 10, 30];
-for i=1:size(param_grid)(2)
-    for j=1:size(param_grid)(2)
-        fprintf('i=%d\nj=%d\n==================', i, j)
-    end
-end
 
+% maxtrix A will contain all parameters and resulting error score
+% initialize empty A
+A = []
+counter=0
+grid_len = size(param_grid)(2)
 
-for i = 1:2
-    for j = 1:2
+for i=1:grid_len
+    for j=1:grid_len
+        counter += 1;
         C = param_grid(i);
         sigma = param_grid(j);
-        model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
+        printf('======================================\n');
+        printf('Iteration %d out of %d\n', counter, grid_len*grid_len);
+        printf('C: %d\n', C);
+        printf('sigma: %d\n', sigma);
+        model = svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
         predictions = svmPredict(model, Xval);
-        mean(double(predictions ~= yval))
+        J = mean(double(predictions ~= yval));
+        printf('J: %d\n', J);
+
+        % add C, sigma, J as a new row to matrix A
+        A = [A;[C sigma J]];
     end
 end
 
+% store index of the BEST pair of parameters in `iw`
+[w, iw] = min(A(:, 3));
 
-
-C=100;
-size(Xval)
-model= svmTrain(X, y, C, @(x1, x2) gaussianKernel(x1, x2, sigma));
-predictions = svmPredict(model, Xval);
-size(predictions)
-mean(double(predictions ~= yval))
-0
-
+% unpack best parameters from iw's row of matrix A
+C = A(iw, :)(1);
+sigma = A(iw, :)(2);
+J = A(iw, :)(3);
 
 
 
