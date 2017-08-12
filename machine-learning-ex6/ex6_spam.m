@@ -54,8 +54,8 @@ features      = emailFeatures(word_indices);
 fprintf('Length of feature vector: %d\n', length(features));
 fprintf('Number of non-zero entries: %d\n', sum(features > 0));
 
-fprintf('Program paused. Press enter to continue.\n');
-pause;
+% Print footer
+fprintf('\n\n=========================\n');
 
 %% =========== Part 3: Train Linear SVM for Spam Classification ========
 %  In this section, you will train a linear classifier to determine if an
@@ -88,7 +88,7 @@ fprintf('\nEvaluating the trained Linear SVM on a test set ...\n')
 p = svmPredict(model, Xtest);
 
 fprintf('Test Accuracy: %f\n', mean(double(p == ytest)) * 100);
-pause;
+fprintf('\n\n=========================\n');
 
 
 %% ================= Part 5: Top Predictors of Spam ====================
@@ -109,8 +109,7 @@ for i = 1:15
 end
 
 fprintf('\n\n');
-fprintf('\nProgram paused. Press enter to continue.\n');
-pause;
+fprintf('\n\n=========================\n');
 
 %% =================== Part 6: Try Your Own Emails =====================
 %  Now that you've trained the spam classifier, you can use it on your own
@@ -123,7 +122,7 @@ pause;
 % Set the file to be read in (change this to spamSample2.txt,
 % emailSample1.txt or emailSample2.txt to see different predictions on
 % different emails types). Try your own emails as well!
-filename = 'spamSample1.txt';
+filename = 'spamSample2.txt';
 
 % Read and predict
 file_contents = readFile(filename);
