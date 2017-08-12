@@ -80,7 +80,7 @@ fprintf('Loading and Visualizing Data ...\n')
 load('ex6data2.mat');
 
 % Plot training data
-plotData(X, y);
+%plotData(X, y);
 
 
 %% ========== Part 5: Training SVM with RBF Kernel (Dataset 2) ==========
@@ -116,7 +116,7 @@ fprintf('Loading and Visualizing Data ...\n')
 load('ex6data3.mat');
 
 % Plot training data
-plotData(X, y);
+%plotData(X, y);
 
 fprintf('Program paused. Press enter to continue.\n');
 
