@@ -8,8 +8,8 @@ function idx = findClosestCentroids(X, centroids)
 
 % disable automatic broadcasting warning
 warning ("off", "Octave:broadcast");
-
 % Set K
+
 K = size(centroids, 1);
 
 % You need to return the following variables correctly.
