@@ -5,6 +5,10 @@ function idx = findClosestCentroids(X, centroids)
 %   vector of centroid assignments (i.e. each entry in range [1..K])
 
 %centroids=initial_centroids
+
+% disable automatic broadcasting warning
+warning ("off", "Octave:broadcast");
+
 % Set K
 K = size(centroids, 1);
 
