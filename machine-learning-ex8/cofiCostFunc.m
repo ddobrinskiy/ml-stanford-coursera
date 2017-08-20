@@ -92,13 +92,6 @@ J = J_err + reg_pen * lambda/2;
 X_grad     += lambda*X;
 Theta_grad += lambda*Theta;
 
-
-
-
-
-
-
-
 % =============================================================
 
 grad = [X_grad(:); Theta_grad(:)];
