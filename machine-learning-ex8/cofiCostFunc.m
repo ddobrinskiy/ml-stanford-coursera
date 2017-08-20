@@ -42,25 +42,45 @@ Theta_grad = zeros(size(Theta));
 
 % for effecient calculation of cost function, let's iterate over Users
 % because theta has Users x Features, X has Movies x Users
-for j = 1:num_users
-    % loop iterates over USERS
-    usr_ix = R(:, j);
-    usr_theta = Theta(j, :);
-    %usr_theta = [0.4, 0.1, 1]
-    usr_rated_movies_features = X(usr_ix, :);
-    usr_y_pred = usr_rated_movies_features * usr_theta';
-    usr_y_val = Y(usr_ix, j);
-    % Calculate cost for current User
-    % usr_j = sum((usr_y_pred - usr_y_val).^ 2)
-    % below is a more effecient matrix implementations of usr_j
-    usr_err = usr_y_pred - usr_y_val;
-    usr_j = (usr_err'*usr_err)/2;
+%  for j = 1:num_users
+%      % loop iterates over USERS
+%      usr_ix = R(:, j);
+%      usr_theta = Theta(j, :);
+%      %usr_theta = [0.4, 0.1, 1]
+%      usr_rated_movies_features = X(usr_ix, :);
+%      usr_y_pred = usr_rated_movies_features * usr_theta';
+%      usr_y_val = Y(usr_ix, j);
+%      % Calculate cost for current User
+%      % usr_j = sum((usr_y_pred - usr_y_val).^ 2)
+%      % below is a more effecient matrix implementations of usr_j
+%      usr_err = usr_y_pred - usr_y_val;
+%      usr_j = (usr_err'*usr_err)/2;
+%
+%      % add User cost to total Cost
+%      J += usr_j;
+%  end
 
-    % add User cost to total Cost
-    J += usr_j;
-end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Implementation Note: We strongly encourage you to use a vectorized
+% implementation to compute J, since it will later by called many times
+% by the optimization package fmincg. As usual, it might be easiest to
+% first write a non-vectorized implementation (to make sure you have the
+% right answer), and the modify it to become a vectorized implementation
+% (checking that the vectorization steps don’t change your algorithm’s output).
+% To come up with a vectorized implementation, the following tip
+% might be helpful: You can use the R matrix to set selected entries to 0.
+% For example, R .* M will do an element-wise multiplication between M
+% and R; since R only has elements with values either 0 or 1, this has the
+% effect of setting the elements of M to 0 only when the corresponding value
+% in R is 0. Hence, sum(sum(R.*M)) is the sum of all the elements of M for
+% which the corresponding element in R equals 1.
 
-%J = 1/2 * sum(sum(R.*((X*Theta' - Y).^2)));
+% cost without regularization
+J = 1/2 * sum(sum(R.*((X*Theta' - Y).^2)));
+
+% gradient without normalization
+X_grad          =  R.*(X*Theta' - Y)   * Theta;
+Theta_grad      = (R.*(X*Theta' - Y))' * X;
 
 
 
