@@ -76,15 +76,21 @@ Theta_grad = zeros(size(Theta));
 % which the corresponding element in R equals 1.
 
 % cost without regularization
-J = 1/2 * sum(sum(R.*((X*Theta' - Y).^2)));
+J_err = 1/2 * sum(sum(R.*((X*Theta' - Y).^2)));
 
 % gradient without normalization
 X_grad          =  R.*(X*Theta' - Y)   * Theta;
 Theta_grad      = (R.*(X*Theta' - Y))' * X;
 
 
+% regularization penalty
+reg_pen = sum(sum(Theta .^ 2)) + sum(sum(X .^ 2));
+J = J_err + reg_pen * lambda/2;
 
 
+% gradient with normalization
+X_grad     += lambda*X;
+Theta_grad += lambda*Theta;
 
 
 
